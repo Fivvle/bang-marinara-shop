@@ -111,9 +111,20 @@ button { font-family: "VT323", "Arial Black", Arial, monospace; border: none; ba
    ===================== */
 
 
-/* =====================
-   FLOATING REVEAL
-   ===================== */
+#hero-bottom {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: "VT323", "Arial Black", Arial, monospace;
+  font-weight: 900;
+  font-size: clamp(13px, 1.8vw, 22px);
+  letter-spacing: 0.08em;
+  pointer-events: none;
+}
+
+
 #reveal-float {
   position: fixed;
   pointer-events: none;
