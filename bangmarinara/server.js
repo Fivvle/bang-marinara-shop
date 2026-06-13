@@ -8,6 +8,10 @@ const express = require('express');
 const path = require('path');
 const crypto = require('crypto');
 const Database = require('better-sqlite3');
+const fs = require('fs');
+if (!fs.existsSync(path.join(__dirname, 'db'))) {
+  fs.mkdirSync(path.join(__dirname, 'db'));
+}
 
 const app = express();
 const PORT = process.env.PORT || 3000;
