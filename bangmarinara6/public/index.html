@@ -5,43 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BANG MARINARA</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=Courier+Prime:ital@0;1&display=swap" rel="stylesheet" />
 </head>
 <body>
 
   <!-- ===================== HERO ===================== -->
   <section id="hero">
 
-    <!--
-      Layout:
-      ┌─────┬──────────────────────┐
-      │  B  │  A  N  G             │  ← BANG row (B + ANG horizontal)
-      │     ├──────────────────────┤
-      │     │  [reveal strip]      │  ← fades in on hover
-      │  A  │                      │
-      │  R  │                      │
-      │  I  │                      │
-      │  N  │                      │
-      │  A  │                      │
-      │  R  │                      │
-      │  A  │                      │
-      └─────┴──────────────────────┘
-      B and M share the same left column cell (B is the top of MARINARA's column)
-    -->
-
     <div id="hero-layout">
-
-      <!-- LEFT COLUMN: B on top, then ARINARA below -->
       <div id="left-col">
-        <!-- B is shared — top of the vertical column AND first letter of BANG -->
         <span class="big-letter v-letter" id="letter-b" style="color:#1f56b5">B</span>
-
-        <!-- MARINARA minus M (M aligns with B visually via the grid) -->
-        <!-- M is rendered separately beside B in the same row -->
       </div>
-
-      <!-- RIGHT AREA: ANG -->
       <div id="right-col">
         <div id="bang-right">
           <span class="big-letter h-letter" style="color:#fcdf03">A</span>
@@ -49,51 +22,46 @@
           <span class="big-letter h-letter" style="color:#4eb51f">G</span>
         </div>
       </div>
-
     </div>
 
-    <!-- MARINARA vertical column (M aligns under B, then rest below) -->
     <div id="marinara-col">
-
-      <!-- M — same color as B (#1f56b5), sits directly under B -->
       <span class="big-letter v-letter" style="color:#1f56b5">M</span>
 
-      <!-- A1 — APPAREL -->
       <span class="big-letter v-letter interactive" style="color:#fcdf03"
-        data-reveal="PPAREL" data-reveal-prefix="A" data-color="#fcdf03"
+        data-reveal="PPAREL" data-color="#fcdf03"
         onmouseenter="showReveal(this)" onmouseleave="hideReveal()"
+        ontouchstart="handleTouch(this)" ontouchend="hideRevealTouch()"
         onclick="openSection('apparel-section')">A</span>
 
-      <!-- R -->
       <span class="big-letter v-letter" style="color:#d62929">R</span>
 
-      <!-- I — INFO -->
       <span class="big-letter v-letter interactive" style="color:#4eb51f"
-        data-reveal="NFO" data-reveal-prefix="I" data-color="#4eb51f"
+        data-reveal="NFO" data-color="#4eb51f"
         onmouseenter="showReveal(this)" onmouseleave="hideReveal()"
+        ontouchstart="handleTouch(this)" ontouchend="hideRevealTouch()"
         onclick="openSection('info-section')">I</span>
 
-      <!-- N -->
       <span class="big-letter v-letter" style="color:#1f56b5">N</span>
 
-      <!-- A2 — ACCESSORIES -->
       <span class="big-letter v-letter interactive" style="color:#fcdf03"
-        data-reveal="CCESSORIES" data-reveal-prefix="A" data-color="#fcdf03"
+        data-reveal="CCESSORIES" data-color="#fcdf03"
         onmouseenter="showReveal(this)" onmouseleave="hideReveal()"
+        ontouchstart="handleTouch(this)" ontouchend="hideRevealTouch()"
         onclick="openSection('accessories-section')">A</span>
 
-      <!-- R -->
       <span class="big-letter v-letter" style="color:#d62929">R</span>
 
-      <!-- A3 — ABOUT -->
       <span class="big-letter v-letter interactive" style="color:#4eb51f"
-        data-reveal="BOUT" data-reveal-prefix="A" data-color="#4eb51f"
+        data-reveal="BOUT" data-color="#4eb51f"
         onmouseenter="showReveal(this)" onmouseleave="hideReveal()"
+        ontouchstart="handleTouch(this)" ontouchend="hideRevealTouch()"
         onclick="openSection('about-section')">A</span>
-
     </div>
 
   </section>
+
+  <!-- Floating reveal -->
+  <div id="reveal-float"><span id="reveal-text"></span></div>
 
   <!-- ===================== APPAREL SECTION ===================== -->
   <section id="apparel-section" class="page-section hidden">
@@ -145,7 +113,10 @@
     </div>
 
     <header class="section-nav">
-      <button class="back-btn" onclick="closeSection('apparel-section')">← BANG MARINARA</button>
+      <button class="back-btn" onclick="closeSection('apparel-section')">
+        ← <span style="color:#1f56b5">B</span><span style="color:#fcdf03">A</span><span style="color:#d62929">N</span><span style="color:#4eb51f">G</span>
+        <span style="color:#1f56b5">M</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">I</span><span style="color:#1f56b5">N</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">A</span>
+      </button>
       <div class="section-nav-right">
         <div class="filter-row">
           <button class="filter-btn active" onclick="filterProducts('all', this)">ALL</button>
@@ -165,7 +136,10 @@
     <div id="products-grid" class="products-grid"></div>
 
     <footer class="section-footer">
-      <span class="footer-logo">BANG MARINARA</span>
+      <span class="footer-logo">
+        <span style="color:#1f56b5">B</span><span style="color:#fcdf03">A</span><span style="color:#d62929">N</span><span style="color:#4eb51f">G</span>
+        <span style="color:#1f56b5">M</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">I</span><span style="color:#1f56b5">N</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">A</span>
+      </span>
       <span>© 2025</span>
     </footer>
   </section>
@@ -173,53 +147,83 @@
   <!-- ===================== ACCESSORIES SECTION ===================== -->
   <section id="accessories-section" class="page-section hidden">
     <header class="section-nav">
-      <button class="back-btn" onclick="closeSection('accessories-section')">← BANG MARINARA</button>
+      <button class="back-btn" onclick="closeSection('accessories-section')">
+        ← <span style="color:#1f56b5">B</span><span style="color:#fcdf03">A</span><span style="color:#d62929">N</span><span style="color:#4eb51f">G</span>
+        <span style="color:#1f56b5">M</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">I</span><span style="color:#1f56b5">N</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">A</span>
+      </button>
       <div class="nav-actions">
         <span class="cart-icon" onclick="openCart()">BAG (<span id="cart-count-acc">0</span>)</span>
       </div>
     </header>
     <div id="accessories-grid" class="products-grid"></div>
-    <footer class="section-footer"><span class="footer-logo">BANG MARINARA</span><span>© 2025</span></footer>
+    <footer class="section-footer">
+      <span class="footer-logo">
+        <span style="color:#1f56b5">B</span><span style="color:#fcdf03">A</span><span style="color:#d62929">N</span><span style="color:#4eb51f">G</span>
+        <span style="color:#1f56b5">M</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">I</span><span style="color:#1f56b5">N</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">A</span>
+      </span>
+      <span>© 2025</span>
+    </footer>
   </section>
 
   <!-- ===================== INFO SECTION ===================== -->
   <section id="info-section" class="page-section hidden">
     <header class="section-nav">
-      <button class="back-btn" onclick="closeSection('info-section')">← BANG MARINARA</button>
+      <button class="back-btn" onclick="closeSection('info-section')">
+        ← <span style="color:#1f56b5">B</span><span style="color:#fcdf03">A</span><span style="color:#d62929">N</span><span style="color:#4eb51f">G</span>
+        <span style="color:#1f56b5">M</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">I</span><span style="color:#1f56b5">N</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">A</span>
+      </button>
     </header>
     <div class="info-body">
-      <div class="info-col"><h2>INFO</h2></div>
+      <div class="info-col">
+        <h2>
+          <span style="color:#1f56b5">I</span><span style="color:#fcdf03">N</span><span style="color:#d62929">F</span><span style="color:#4eb51f">O</span>
+        </h2>
+      </div>
       <div class="info-col info-text">
-        <p>BANG MARINARA came out of a back room argument about what clothes should actually feel like. The answer: like something you chose on purpose.</p>
+        <p><span style="color:#1f56b5">B</span><span style="color:#fcdf03">A</span><span style="color:#d62929">N</span><span style="color:#4eb51f">G</span> <span style="color:#1f56b5">M</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">I</span><span style="color:#1f56b5">N</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">A</span> came out of a back room argument about what clothes should actually feel like. The answer: like something you chose on purpose.</p>
         <p>We produce small runs, cut from real fabrics, sized honestly. Each piece outlasts the season that made it.</p>
         <p>Orders ship within 3–5 business days. Returns accepted within 30 days, unworn.</p>
         <p class="info-contact">Contact: <a href="mailto:hello@bangmarinara.com">hello@bangmarinara.com</a></p>
       </div>
     </div>
-    <footer class="section-footer"><span class="footer-logo">BANG MARINARA</span><span>© 2025</span></footer>
+    <footer class="section-footer">
+      <span class="footer-logo">
+        <span style="color:#1f56b5">B</span><span style="color:#fcdf03">A</span><span style="color:#d62929">N</span><span style="color:#4eb51f">G</span>
+        <span style="color:#1f56b5">M</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">I</span><span style="color:#1f56b5">N</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">A</span>
+      </span>
+      <span>© 2025</span>
+    </footer>
   </section>
 
   <!-- ===================== ABOUT SECTION ===================== -->
   <section id="about-section" class="page-section hidden">
     <header class="section-nav">
-      <button class="back-btn" onclick="closeSection('about-section')">← BANG MARINARA</button>
+      <button class="back-btn" onclick="closeSection('about-section')">
+        ← <span style="color:#1f56b5">B</span><span style="color:#fcdf03">A</span><span style="color:#d62929">N</span><span style="color:#4eb51f">G</span>
+        <span style="color:#1f56b5">M</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">I</span><span style="color:#1f56b5">N</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">A</span>
+      </button>
     </header>
     <div class="info-body">
-      <div class="info-col"><h2>ABOUT</h2></div>
+      <div class="info-col">
+        <h2>
+          <span style="color:#1f56b5">A</span><span style="color:#fcdf03">B</span><span style="color:#d62929">O</span><span style="color:#4eb51f">U</span><span style="color:#1f56b5">T</span>
+        </h2>
+      </div>
       <div class="info-col info-text">
         <p>We are a small clothing label. We work with a team of four people and two factories. We do not do seasons, we do not do drops, we do not do hype.</p>
-        <p>BANG MARINARA started because we couldn't find clothes that felt like they were made for real life. So we made them ourselves.</p>
+        <p><span style="color:#1f56b5">B</span><span style="color:#fcdf03">A</span><span style="color:#d62929">N</span><span style="color:#4eb51f">G</span> <span style="color:#1f56b5">M</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">I</span><span style="color:#1f56b5">N</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">A</span> started because we couldn't find clothes that felt like they were made for real life. So we made them ourselves.</p>
         <p>Every piece is designed to be worn, washed, and worn again. That is the whole idea.</p>
         <p class="info-contact">Based in New York. Shipping worldwide.</p>
       </div>
     </div>
-    <footer class="section-footer"><span class="footer-logo">BANG MARINARA</span><span>© 2025</span></footer>
+    <footer class="section-footer">
+      <span class="footer-logo">
+        <span style="color:#1f56b5">B</span><span style="color:#fcdf03">A</span><span style="color:#d62929">N</span><span style="color:#4eb51f">G</span>
+        <span style="color:#1f56b5">M</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">I</span><span style="color:#1f56b5">N</span><span style="color:#fcdf03">A</span><span style="color:#d62929">R</span><span style="color:#4eb51f">A</span>
+      </span>
+      <span>© 2025</span>
+    </footer>
   </section>
-
-  <!-- Floating reveal — positioned via JS next to hovered letter -->
-  <div id="reveal-float">
-    <span id="reveal-text"></span>
-  </div>
 
   <script src="app.js"></script>
 </body>

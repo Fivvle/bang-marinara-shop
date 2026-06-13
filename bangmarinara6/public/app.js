@@ -37,32 +37,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ---- REVEAL INTERACTION ----
 function showReveal(el) {
-  const prefix = el.dataset.revealPrefix;
   const rest = el.dataset.reveal;
-  const color = el.dataset.color || window.getComputedStyle(el).color;
-
+  const color = el.dataset.color || '#0a0a0a';
   const float = document.getElementById('reveal-float');
   const text = document.getElementById('reveal-text');
 
-  text.innerHTML = `<span style="color:#0a0a0a">${rest}</span>`;
+  text.innerHTML = `<span style="color:${color}">${rest}</span>`;
 
-  // Position float to the right of the hovered letter, vertically centered on it
   const rect = el.getBoundingClientRect();
   float.style.top = (rect.top + rect.height / 2) + 'px';
   float.style.left = (rect.right + 12) + 'px';
-  float.style.transform = 'translateX(-10px) translateY(-50%)';
 
-  // Force reflow then animate in
   float.classList.remove('visible');
-  requestAnimationFrame(() => {
-    float.style.transform = 'translateX(0) translateY(-50%)';
-    float.classList.add('visible');
-  });
+  requestAnimationFrame(() => float.classList.add('visible'));
 }
 
 function hideReveal() {
-  const float = document.getElementById('reveal-float');
-  float.classList.remove('visible');
+  document.getElementById('reveal-float').classList.remove('visible');
+}
+
+// Touch: show briefly then auto-hide, then navigate on click
+let touchRevealTimer = null;
+function handleTouch(el) {
+  // On touch devices the reveal is hidden via CSS (@media hover:none)
+  // so touch just falls through to the onclick handler — nothing to do
+}
+function hideRevealTouch() {
+  hideReveal();
 }
 
 // ---- SECTION NAVIGATION ----
