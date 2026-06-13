@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BANG MARINARA — Clothing</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=Courier+Prime:ital@0;1&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- AUTH MODAL -->
+  <div id="auth-modal" class="modal hidden">
+    <div class="modal-backdrop" onclick="closeModal('auth-modal')"></div>
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('auth-modal')">✕</button>
+      <div id="auth-tabs">
+        <button class="tab-btn active" onclick="switchTab('login')">LOGIN</button>
+        <button class="tab-btn" onclick="switchTab('register')">REGISTER</button>
+      </div>
+      <div id="login-form">
+        <h2>SIGN IN</h2>
+        <input type="email" id="login-email" placeholder="email" />
+        <input type="password" id="login-password" placeholder="password" />
+        <button class="submit-btn" onclick="login()">ENTER</button>
+        <div id="login-error" class="form-error"></div>
+      </div>
+      <div id="register-form" class="hidden">
+        <h2>CREATE ACCOUNT</h2>
+        <input type="text" id="reg-name" placeholder="full name" />
+        <input type="email" id="reg-email" placeholder="email" />
+        <input type="password" id="reg-password" placeholder="password (min 6 chars)" />
+        <button class="submit-btn" onclick="register()">JOIN</button>
+        <div id="register-error" class="form-error"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CART MODAL -->
+  <div id="cart-modal" class="modal hidden">
+    <div class="modal-backdrop" onclick="closeModal('cart-modal')"></div>
+    <div class="modal-box cart-box">
+      <button class="modal-close" onclick="closeModal('cart-modal')">✕</button>
+      <h2>CART</h2>
+      <div id="cart-items"></div>
+      <div id="cart-total"></div>
+      <button class="submit-btn" id="checkout-btn" onclick="checkout()">CHECKOUT</button>
+      <div id="cart-msg"></div>
+    </div>
+  </div>
+
+  <!-- PRODUCT MODAL -->
+  <div id="product-modal" class="modal hidden">
+    <div class="modal-backdrop" onclick="closeModal('product-modal')"></div>
+    <div class="modal-box product-box">
+      <button class="modal-close" onclick="closeModal('product-modal')">✕</button>
+      <div id="product-detail"></div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <header id="site-header">
+    <div class="header-left">
+      <a href="#" class="site-logo">BANG MARINARA</a>
+    </div>
+    <nav class="header-nav">
+      <a href="#collection">COLLECTION</a>
+      <a href="#about">ABOUT</a>
+      <span id="auth-link" onclick="openModal('auth-modal')">SIGN IN</span>
+      <span id="user-name-display"></span>
+      <span id="logout-btn" class="hidden" onclick="logout()">LOG OUT</span>
+      <span class="cart-icon" onclick="openCart()">BAG (<span id="cart-count">0</span>)</span>
+    </nav>
+  </header>
+
+  <!-- HERO — the signature logo block -->
+  <section class="hero">
+
+    <!-- LEFT: vertical MARINARA letters -->
+    <div class="hero-left">
+      <div class="marinara-vertical">
+        <span>M</span>
+        <span>A</span>
+        <span>R</span>
+        <span>I</span>
+        <span>N</span>
+        <span>A</span>
+        <span>R</span>
+        <span>A</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: horizontal BANG + tagline -->
+    <div class="hero-right">
+      <div class="bang-horizontal">BANG</div>
+      <div class="hero-sub-block">
+        <p class="hero-eyebrow">SEASON 01 — 2025</p>
+        <p class="hero-tagline">Clothes that hit.<br/>Every time.</p>
+        <a href="#collection" class="cta-link">VIEW COLLECTION ↓</a>
+      </div>
+    </div>
+
+    <!-- TICKER -->
+    <div class="hero-ticker">
+      <div class="ticker-inner">
+        BANG MARINARA &nbsp;·&nbsp; FREE SHIPPING OVER $150 &nbsp;·&nbsp; SEASON 01 NOW LIVE &nbsp;·&nbsp; BANG MARINARA &nbsp;·&nbsp; FREE SHIPPING OVER $150 &nbsp;·&nbsp; SEASON 01 NOW LIVE &nbsp;·&nbsp;
+        BANG MARINARA &nbsp;·&nbsp; FREE SHIPPING OVER $150 &nbsp;·&nbsp; SEASON 01 NOW LIVE &nbsp;·&nbsp; BANG MARINARA &nbsp;·&nbsp; FREE SHIPPING OVER $150 &nbsp;·&nbsp; SEASON 01 NOW LIVE &nbsp;·&nbsp;
+      </div>
+    </div>
+
+  </section>
+
+  <!-- COLLECTION -->
+  <section id="collection" class="collection-section">
+    <div class="collection-header">
+      <h2>THE COLLECTION</h2>
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="filterProducts('all', this)">ALL</button>
+        <button class="filter-btn" onclick="filterProducts('tops', this)">TOPS</button>
+        <button class="filter-btn" onclick="filterProducts('bottoms', this)">BOTTOMS</button>
+        <button class="filter-btn" onclick="filterProducts('outerwear', this)">OUTERWEAR</button>
+        <button class="filter-btn" onclick="filterProducts('accessories', this)">ACCESSORIES</button>
+      </div>
+    </div>
+    <div id="products-grid" class="products-grid"></div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about-section">
+    <div class="about-col">
+      <h2>ABOUT<br/>BANG<br/>MARINARA</h2>
+    </div>
+    <div class="about-col about-text">
+      <p>BANG MARINARA came out of a back room argument about what clothes should actually feel like. The answer was: like something you chose on purpose. No filler pieces, no placeholder graphics, no trend-chasing.</p>
+      <p>We produce small runs, cut from real fabrics, sized honestly. Each piece is meant to last longer than the season that made it.</p>
+      <p class="about-note">→ All orders ship within 3–5 business days. Returns accepted within 30 days, unworn.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-left">
+      <span class="footer-logo">BANG MARINARA</span>
+      <span>© 2025. All rights reserved.</span>
+    </div>
+    <div class="footer-right">
+      <a href="#">Instagram</a>
+      <a href="#">Newsletter</a>
+      <a href="#">Stockists</a>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
