@@ -117,30 +117,31 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
   letter-spacing: -0.02em;
 }
 
-/* Reveal strip: sits under ANG, slides in horizontally */
-#reveal-strip {
-  height: calc(var(--letter-size) * 0.7);
+/* Floating reveal tooltip — positioned by JS next to the hovered letter */
+#reveal-float {
+  position: fixed;
+  pointer-events: none;
+  z-index: 999;
   display: flex;
   align-items: center;
-  overflow: hidden;
-  padding-top: 2px;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#reveal-float.visible {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 #reveal-text {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: calc(var(--letter-size) * 0.68);
+  font-size: calc(var(--letter-size) * 0.62);
   line-height: 1;
   letter-spacing: -0.02em;
-  opacity: 0;
-  transform: translateX(-16px);
-  transition: opacity 0.22s ease, transform 0.22s ease;
   white-space: nowrap;
-}
-
-#reveal-text.visible {
-  opacity: 1;
-  transform: translateX(0);
+  color: var(--ink);
 }
 
 /* =====================

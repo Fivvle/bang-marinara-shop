@@ -41,18 +41,12 @@
         <!-- M is rendered separately beside B in the same row -->
       </div>
 
-      <!-- RIGHT AREA: top row is ANG + reveal, rest is empty -->
+      <!-- RIGHT AREA: ANG -->
       <div id="right-col">
-        <!-- BANG: B is in left col, ANG continues here -->
         <div id="bang-right">
           <span class="big-letter h-letter" style="color:#fcdf03">A</span>
           <span class="big-letter h-letter" style="color:#d62929">N</span>
           <span class="big-letter h-letter" style="color:#4eb51f">G</span>
-        </div>
-
-        <!-- Reveal strip sits under ANG, same row height as the MARINARA letters -->
-        <div id="reveal-strip">
-          <span id="reveal-text"></span>
         </div>
       </div>
 
@@ -221,6 +215,11 @@
     </div>
     <footer class="section-footer"><span class="footer-logo">BANG MARINARA</span><span>© 2025</span></footer>
   </section>
+
+  <!-- Floating reveal — positioned via JS next to hovered letter -->
+  <div id="reveal-float">
+    <span id="reveal-text"></span>
+  </div>
 
   <script src="app.js"></script>
 </body>

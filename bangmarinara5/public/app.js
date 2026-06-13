@@ -39,16 +39,30 @@ document.addEventListener('DOMContentLoaded', () => {
 function showReveal(el) {
   const prefix = el.dataset.revealPrefix;
   const rest = el.dataset.reveal;
-  const color = window.getComputedStyle(el).color;
+  const color = el.dataset.color || window.getComputedStyle(el).color;
 
-  const strip = document.getElementById('reveal-text');
-  // prefix letter in same color, rest in ink
-  strip.innerHTML = `<span style="color:${color}">${prefix}</span><span style="color:#0a0a0a">${rest}</span>`;
-  strip.classList.add('visible');
+  const float = document.getElementById('reveal-float');
+  const text = document.getElementById('reveal-text');
+
+  text.innerHTML = `<span style="color:${color}">${prefix}</span><span style="color:#0a0a0a">${rest}</span>`;
+
+  // Position float to the right of the hovered letter, vertically centered on it
+  const rect = el.getBoundingClientRect();
+  float.style.top = (rect.top + rect.height / 2) + 'px';
+  float.style.left = (rect.right + 12) + 'px';
+  float.style.transform = 'translateX(-10px) translateY(-50%)';
+
+  // Force reflow then animate in
+  float.classList.remove('visible');
+  requestAnimationFrame(() => {
+    float.style.transform = 'translateX(0) translateY(-50%)';
+    float.classList.add('visible');
+  });
 }
 
 function hideReveal() {
-  document.getElementById('reveal-text').classList.remove('visible');
+  const float = document.getElementById('reveal-float');
+  float.classList.remove('visible');
 }
 
 // ---- SECTION NAVIGATION ----
