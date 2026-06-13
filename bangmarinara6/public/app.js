@@ -9,16 +9,10 @@ const PRODUCTS = [
   { id:1, name:'STRUCTURE COAT', category:'outerwear', price:298, emoji:'🖤', bg:'#1a1a1a', color:'#c8ff00', desc:'Oversized wool-blend coat with raw-hem finishes. Dropped shoulders, minimal internal structure. Charcoal.', sizes:['XS','S','M','L','XL'] },
   { id:2, name:'VOID SHIRT', category:'tops', price:88, emoji:'□', bg:'#f0ede6', color:'#0a0a0a', desc:'Boxy-cut heavyweight cotton shirt. Triple-stitched seams. Slightly oversized through the torso.', sizes:['XS','S','M','L','XL','XXL'] },
   { id:3, name:'MATTER TROUSER', category:'bottoms', price:145, emoji:'||', bg:'#3d3530', color:'#f2efe8', desc:'Wide-leg cotton-linen trouser. Elastic waist. Two deep side pockets. Stone & Ink.', sizes:['XS','S','M','L','XL'] },
-  { id:4, name:'FIELD JACKET', category:'outerwear', price:245, emoji:'◈', bg:'#5a6348', color:'#f2efe8', desc:'Ripstop shell, four chest pockets, single back vent. Unlined. Sage green.', sizes:['S','M','L','XL'] },
-  { id:5, name:'ARCHIVE TEE', category:'tops', price:52, emoji:'A', bg:'#b84a2e', color:'#f2efe8', desc:'Relaxed heavyweight jersey. Drop shoulder. Screen-printed archive mark at left chest.', sizes:['XS','S','M','L','XL','XXL'] },
-  { id:6, name:'RIB KNIT', category:'tops', price:96, emoji:'≡', bg:'#c4b8a8', color:'#0a0a0a', desc:'Merino wool ribbed knit. Crew neck. No logo. Wears under everything.', sizes:['XS','S','M','L','XL'] },
-  { id:7, name:'UTILITY PANT', category:'bottoms', price:165, emoji:'✦', bg:'#2c2c2c', color:'#c8ff00', desc:'Six-pocket cargo cut in dense cotton twill. Straight leg, natural waist. Black or Tan.', sizes:['XS','S','M','L','XL'] },
 ];
 
 const ACCESSORIES = [
   { id:8, name:'CANVAS BAG', category:'accessories', price:65, emoji:'⬡', bg:'#e8dfc8', color:'#0a0a0a', desc:'Waxed canvas tote. Interior zip pocket. 16" handles. Fits a laptop.', sizes:['ONE SIZE'] },
-  { id:9, name:'WOOL SCARF', category:'accessories', price:78, emoji:'~', bg:'#7a7469', color:'#f2efe8', desc:'Hand-loomed 100% merino. 200cm length. No fringe. Does exactly one job.', sizes:['ONE SIZE'] },
-  { id:10, name:'LEATHER CARD CASE', category:'accessories', price:42, emoji:'▭', bg:'#3a2a1a', color:'#e8dfc8', desc:'Vegetable-tanned leather. Holds 6 cards. Gets better with use.', sizes:['ONE SIZE'] },
 ];
 
 let cart = JSON.parse(localStorage.getItem('bm_cart') || '[]');
