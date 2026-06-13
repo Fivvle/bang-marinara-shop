@@ -114,9 +114,10 @@ button { font-family: "VT323", "Arial Black", Arial, monospace; border: none; ba
 #hero-bottom {
   position: absolute;
   bottom: 24px;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
+  white-space: nowrap;
   font-family: "VT323", "Arial Black", Arial, monospace;
   font-weight: 900;
   font-size: clamp(13px, 1.8vw, 22px);
