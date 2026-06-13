@@ -13,68 +13,88 @@
   <!-- ===================== HERO ===================== -->
   <section id="hero">
 
-    <!-- BANG row -->
-    <div class="word-row" id="bang-row">
-      <span class="big-letter" style="color:#1f56b5">B</span>
-      <span class="big-letter" style="color:#fcdf03">A</span>
-      <span class="big-letter" style="color:#d62929">N</span>
-      <span class="big-letter" style="color:#4eb51f">G</span>
+    <!--
+      Layout:
+      ┌─────┬──────────────────────┐
+      │  B  │  A  N  G             │  ← BANG row (B + ANG horizontal)
+      │     ├──────────────────────┤
+      │     │  [reveal strip]      │  ← fades in on hover
+      │  A  │                      │
+      │  R  │                      │
+      │  I  │                      │
+      │  N  │                      │
+      │  A  │                      │
+      │  R  │                      │
+      │  A  │                      │
+      └─────┴──────────────────────┘
+      B and M share the same left column cell (B is the top of MARINARA's column)
+    -->
+
+    <div id="hero-layout">
+
+      <!-- LEFT COLUMN: B on top, then ARINARA below -->
+      <div id="left-col">
+        <!-- B is shared — top of the vertical column AND first letter of BANG -->
+        <span class="big-letter v-letter" id="letter-b" style="color:#1f56b5">B</span>
+
+        <!-- MARINARA minus M (M aligns with B visually via the grid) -->
+        <!-- M is rendered separately beside B in the same row -->
+      </div>
+
+      <!-- RIGHT AREA: top row is ANG + reveal, rest is empty -->
+      <div id="right-col">
+        <!-- BANG: B is in left col, ANG continues here -->
+        <div id="bang-right">
+          <span class="big-letter h-letter" style="color:#fcdf03">A</span>
+          <span class="big-letter h-letter" style="color:#d62929">N</span>
+          <span class="big-letter h-letter" style="color:#4eb51f">G</span>
+        </div>
+
+        <!-- Reveal strip sits under ANG, same row height as the MARINARA letters -->
+        <div id="reveal-strip">
+          <span id="reveal-text"></span>
+        </div>
+      </div>
+
     </div>
 
-    <!-- Reveal strip — shown under BANG on hover of interactive letters -->
-    <div class="reveal-strip" id="reveal-strip">
-      <span id="reveal-text"></span>
-    </div>
+    <!-- MARINARA vertical column (M aligns under B, then rest below) -->
+    <div id="marinara-col">
 
-    <!-- MARINARA row -->
-    <div class="word-row" id="marinara-row">
-
-      <!-- M -->
-      <span class="big-letter" style="color:#1f56b5">M</span>
+      <!-- M — same color as B (#1f56b5), sits directly under B -->
+      <span class="big-letter v-letter" style="color:#1f56b5">M</span>
 
       <!-- A1 — APPAREL -->
-      <span class="big-letter interactive" style="color:#fcdf03"
-        data-reveal="PPAREL"
-        data-reveal-prefix="A"
-        data-section="apparel-section"
-        onmouseenter="showReveal(this)"
-        onmouseleave="hideReveal()"
+      <span class="big-letter v-letter interactive" style="color:#fcdf03"
+        data-reveal="PPAREL" data-reveal-prefix="A" data-color="#fcdf03"
+        onmouseenter="showReveal(this)" onmouseleave="hideReveal()"
         onclick="openSection('apparel-section')">A</span>
 
       <!-- R -->
-      <span class="big-letter" style="color:#d62929">R</span>
+      <span class="big-letter v-letter" style="color:#d62929">R</span>
 
       <!-- I — INFO -->
-      <span class="big-letter interactive" style="color:#4eb51f"
-        data-reveal="NFO"
-        data-reveal-prefix="I"
-        data-section="info-section"
-        onmouseenter="showReveal(this)"
-        onmouseleave="hideReveal()"
+      <span class="big-letter v-letter interactive" style="color:#4eb51f"
+        data-reveal="NFO" data-reveal-prefix="I" data-color="#4eb51f"
+        onmouseenter="showReveal(this)" onmouseleave="hideReveal()"
         onclick="openSection('info-section')">I</span>
 
       <!-- N -->
-      <span class="big-letter" style="color:#1f56b5">N</span>
+      <span class="big-letter v-letter" style="color:#1f56b5">N</span>
 
       <!-- A2 — ACCESSORIES -->
-      <span class="big-letter interactive" style="color:#fcdf03"
-        data-reveal="CCESSORIES"
-        data-reveal-prefix="A"
-        data-section="accessories-section"
-        onmouseenter="showReveal(this)"
-        onmouseleave="hideReveal()"
+      <span class="big-letter v-letter interactive" style="color:#fcdf03"
+        data-reveal="CCESSORIES" data-reveal-prefix="A" data-color="#fcdf03"
+        onmouseenter="showReveal(this)" onmouseleave="hideReveal()"
         onclick="openSection('accessories-section')">A</span>
 
       <!-- R -->
-      <span class="big-letter" style="color:#d62929">R</span>
+      <span class="big-letter v-letter" style="color:#d62929">R</span>
 
       <!-- A3 — ABOUT -->
-      <span class="big-letter interactive" style="color:#4eb51f"
-        data-reveal="BOUT"
-        data-reveal-prefix="A"
-        data-section="about-section"
-        onmouseenter="showReveal(this)"
-        onmouseleave="hideReveal()"
+      <span class="big-letter v-letter interactive" style="color:#4eb51f"
+        data-reveal="BOUT" data-reveal-prefix="A" data-color="#4eb51f"
+        onmouseenter="showReveal(this)" onmouseleave="hideReveal()"
         onclick="openSection('about-section')">A</span>
 
     </div>
@@ -84,7 +104,6 @@
   <!-- ===================== APPAREL SECTION ===================== -->
   <section id="apparel-section" class="page-section hidden">
 
-    <!-- AUTH MODAL -->
     <div id="auth-modal" class="modal hidden">
       <div class="modal-backdrop" onclick="closeModal('auth-modal')"></div>
       <div class="modal-box">
@@ -111,7 +130,6 @@
       </div>
     </div>
 
-    <!-- CART MODAL -->
     <div id="cart-modal" class="modal hidden">
       <div class="modal-backdrop" onclick="closeModal('cart-modal')"></div>
       <div class="modal-box cart-box">
@@ -124,7 +142,6 @@
       </div>
     </div>
 
-    <!-- PRODUCT MODAL -->
     <div id="product-modal" class="modal hidden">
       <div class="modal-backdrop" onclick="closeModal('product-modal')"></div>
       <div class="modal-box product-box">
@@ -164,15 +181,11 @@
     <header class="section-nav">
       <button class="back-btn" onclick="closeSection('accessories-section')">← BANG MARINARA</button>
       <div class="nav-actions">
-        <span id="auth-link-acc" onclick="openModal('auth-modal')">SIGN IN</span>
         <span class="cart-icon" onclick="openCart()">BAG (<span id="cart-count-acc">0</span>)</span>
       </div>
     </header>
     <div id="accessories-grid" class="products-grid"></div>
-    <footer class="section-footer">
-      <span class="footer-logo">BANG MARINARA</span>
-      <span>© 2025</span>
-    </footer>
+    <footer class="section-footer"><span class="footer-logo">BANG MARINARA</span><span>© 2025</span></footer>
   </section>
 
   <!-- ===================== INFO SECTION ===================== -->
@@ -181,9 +194,7 @@
       <button class="back-btn" onclick="closeSection('info-section')">← BANG MARINARA</button>
     </header>
     <div class="info-body">
-      <div class="info-col">
-        <h2>INFO</h2>
-      </div>
+      <div class="info-col"><h2>INFO</h2></div>
       <div class="info-col info-text">
         <p>BANG MARINARA came out of a back room argument about what clothes should actually feel like. The answer: like something you chose on purpose.</p>
         <p>We produce small runs, cut from real fabrics, sized honestly. Each piece outlasts the season that made it.</p>
@@ -191,10 +202,7 @@
         <p class="info-contact">Contact: <a href="mailto:hello@bangmarinara.com">hello@bangmarinara.com</a></p>
       </div>
     </div>
-    <footer class="section-footer">
-      <span class="footer-logo">BANG MARINARA</span>
-      <span>© 2025</span>
-    </footer>
+    <footer class="section-footer"><span class="footer-logo">BANG MARINARA</span><span>© 2025</span></footer>
   </section>
 
   <!-- ===================== ABOUT SECTION ===================== -->
@@ -203,9 +211,7 @@
       <button class="back-btn" onclick="closeSection('about-section')">← BANG MARINARA</button>
     </header>
     <div class="info-body">
-      <div class="info-col">
-        <h2>ABOUT</h2>
-      </div>
+      <div class="info-col"><h2>ABOUT</h2></div>
       <div class="info-col info-text">
         <p>We are a small clothing label. We work with a team of four people and two factories. We do not do seasons, we do not do drops, we do not do hype.</p>
         <p>BANG MARINARA started because we couldn't find clothes that felt like they were made for real life. So we made them ourselves.</p>
@@ -213,10 +219,7 @@
         <p class="info-contact">Based in New York. Shipping worldwide.</p>
       </div>
     </div>
-    <footer class="section-footer">
-      <span class="footer-logo">BANG MARINARA</span>
-      <span>© 2025</span>
-    </footer>
+    <footer class="section-footer"><span class="footer-logo">BANG MARINARA</span><span>© 2025</span></footer>
   </section>
 
   <script src="app.js"></script>
