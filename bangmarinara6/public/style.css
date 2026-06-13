@@ -68,6 +68,13 @@ button { font-family: "VT323", "Arial Black", Arial, monospace; border: none; ba
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  gap: 0;
+  line-height: 1;
+}
+
+#left-col {
+  display: flex;
+  align-items: baseline;
 }
 
 #left-col {
@@ -81,6 +88,7 @@ button { font-family: "VT323", "Arial Black", Arial, monospace; border: none; ba
   display: flex;
   flex-direction: row;
   align-items: baseline;
+  margin-left: -0.04em;
 }
 
 .h-letter {
