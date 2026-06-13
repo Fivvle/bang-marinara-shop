@@ -304,6 +304,12 @@ button { font-family: "VT323", "Arial Black", Arial, monospace; border: none; ba
   margin-bottom: 24px;
   color: #222;
 }
+.info-time {
+  font-size: 12px !important;
+  color: var(--mid) !important;
+  margin-bottom: 28px !important;
+  letter-spacing: 0.08em;
+}
 .info-contact {
   color: var(--mid) !important;
   font-size: 13px !important;
