@@ -44,7 +44,7 @@ function showReveal(el) {
   const float = document.getElementById('reveal-float');
   const text = document.getElementById('reveal-text');
 
-  text.innerHTML = `<span style="color:${color}">${prefix}</span><span style="color:#0a0a0a">${rest}</span>`;
+  text.innerHTML = `<span style="color:#0a0a0a">${rest}</span>`;
 
   // Position float to the right of the hovered letter, vertically centered on it
   const rect = el.getBoundingClientRect();
