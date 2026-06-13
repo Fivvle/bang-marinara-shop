@@ -30,7 +30,6 @@ button { font-family: "VT323", "Arial Black", Arial, monospace; border: none; ba
    ===================== */
 #hero {
   width: 100vw;
-  height: 100vh;
   min-height: 100vh;
   padding: 6vh 6vw;
   display: flex;
@@ -38,7 +37,6 @@ button { font-family: "VT323", "Arial Black", Arial, monospace; border: none; ba
   align-items: flex-start;
   transition: opacity 0.4s ease, transform 0.4s ease;
   position: relative;
-  overflow: hidden;
 }
 
 #hero.exiting {
