@@ -111,13 +111,19 @@ button { font-family: "VT323", "Arial Black", Arial, monospace; border: none; ba
    ===================== */
 
 
+.last-a-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
 #hero-bottom {
-  text-align: center;
   font-family: "VT323", "Arial Black", Arial, monospace;
   font-weight: 900;
   font-size: clamp(16px, 2vw, 26px);
   letter-spacing: 0.08em;
-  padding: 32px 0 28px;
+  white-space: nowrap;
 }
 
 
