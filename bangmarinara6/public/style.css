@@ -50,7 +50,7 @@ button { font-family: "VT323", "Arial Black", Arial, monospace; border: none; ba
   font-weight: 900;
   font-size: var(--letter-size);
   line-height: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.06em;
   display: inline-block;
   user-select: none;
 }
@@ -90,7 +90,7 @@ button { font-family: "VT323", "Arial Black", Arial, monospace; border: none; ba
   font-weight: 900;
   font-size: var(--letter-size);
   line-height: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.06em;
 }
 
 #marinara-col {
