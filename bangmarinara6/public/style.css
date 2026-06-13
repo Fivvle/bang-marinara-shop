@@ -2,7 +2,7 @@
    TOKENS
    ===================== */
 :root {
-  --bg: #ebe2ca;
+  --bg: #ffffff;
   --ink: #0a0a0a;
   --mid: #3a3a3a;
   --letter-size: clamp(60px, 10vw, 148px);
@@ -16,14 +16,14 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Chicago", "Arial Black", Arial, Helvetica, sans-serif;
   font-size: 15px;
   line-height: 1.5;
   overflow-x: hidden;
 }
 
 a { color: inherit; text-decoration: none; }
-button { font-family: Arial, Helvetica, sans-serif; border: none; background: none; }
+button { font-family: "Chicago", "Arial Black", Arial, Helvetica, sans-serif; border: none; background: none; }
 
 /* =====================
    HERO
@@ -46,7 +46,7 @@ button { font-family: Arial, Helvetica, sans-serif; border: none; background: no
 }
 
 .big-letter {
-  font-family: Arial Black, Arial, Helvetica, sans-serif;
+  font-family: "Chicago", "Arial Black", Arial, Helvetica, sans-serif;
   font-weight: 900;
   font-size: var(--letter-size);
   line-height: 1;
@@ -85,7 +85,7 @@ button { font-family: Arial, Helvetica, sans-serif; border: none; background: no
 
 .h-letter {
   display: inline-block;
-  font-family: Arial Black, Arial, Helvetica, sans-serif;
+  font-family: "Chicago", "Arial Black", Arial, Helvetica, sans-serif;
   font-weight: 900;
   font-size: var(--letter-size);
   line-height: 1;
@@ -112,7 +112,7 @@ button { font-family: Arial, Helvetica, sans-serif; border: none; background: no
   left: 0;
   right: 0;
   text-align: center;
-  font-family: Arial Black, Arial, Helvetica, sans-serif;
+  font-family: "Chicago", "Arial Black", Arial, Helvetica, sans-serif;
   font-weight: 900;
   font-size: clamp(13px, 1.8vw, 22px);
   letter-spacing: 0.08em;
@@ -140,7 +140,7 @@ button { font-family: Arial, Helvetica, sans-serif; border: none; background: no
 }
 
 #reveal-text {
-  font-family: Arial Black, Arial, Helvetica, sans-serif;
+  font-family: "Chicago", "Arial Black", Arial, Helvetica, sans-serif;
   font-weight: 900;
   font-size: calc(var(--letter-size) * 0.62);
   line-height: 1;
@@ -190,7 +190,7 @@ button { font-family: Arial, Helvetica, sans-serif; border: none; background: no
 }
 
 .back-btn {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Chicago", "Arial Black", Arial, Helvetica, sans-serif;
   font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -209,7 +209,7 @@ button { font-family: Arial, Helvetica, sans-serif; border: none; background: no
 .filter-row { display: flex; gap: 4px; flex-wrap: wrap; }
 
 .filter-btn {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Chicago", "Arial Black", Arial, Helvetica, sans-serif;
   font-size: 10px;
   letter-spacing: 0.1em;
   font-weight: 700;
@@ -345,14 +345,14 @@ button { font-family: Arial, Helvetica, sans-serif; border: none; background: no
 input[type="text"], input[type="email"], input[type="password"] {
   display: block; width: 100%; padding: 12px; margin-bottom: 12px;
   border: 1.5px solid var(--ink); background: transparent;
-  font-family: Arial, Helvetica, sans-serif; font-size: 13px; outline: none; transition: border-color 0.15s;
+  font-family: "Chicago", "Arial Black", Arial, Helvetica, sans-serif; font-size: 13px; outline: none; transition: border-color 0.15s;
 }
 input:focus { border-color: #1f56b5; }
 
 .submit-btn {
   display: block; width: 100%; padding: 14px;
   background: var(--ink); color: var(--bg);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Chicago", "Arial Black", Arial, Helvetica, sans-serif;
   font-size: 12px; letter-spacing: 0.12em; font-weight: 700; text-transform: uppercase;
   margin-top: 8px; transition: background 0.2s;
 }
@@ -377,7 +377,7 @@ input:focus { border-color: #1f56b5; }
 .pd-desc { font-size: 13px; line-height: 1.7; margin-bottom: 24px; color: #444; }
 .pd-size-label { font-size: 10px; letter-spacing: 0.12em; font-weight: 700; text-transform: uppercase; margin-bottom: 8px; }
 .size-row { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
-.size-btn { padding: 8px 14px; border: 1.5px solid var(--ink); font-family: Arial, sans-serif; font-size: 11px; letter-spacing: 0.08em; font-weight: 700; text-transform: uppercase; transition: background 0.15s, color 0.15s; background: transparent; }
+.size-btn { padding: 8px 14px; border: 1.5px solid var(--ink); font-family: "Chicago", "Arial Black", Arial, Helvetica, sans-serif; font-size: 11px; letter-spacing: 0.08em; font-weight: 700; text-transform: uppercase; transition: background 0.15s, color 0.15s; background: transparent; }
 .size-btn:hover, .size-btn.selected { background: var(--ink); color: var(--bg); }
 
 /* =====================
