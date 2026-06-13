@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BANG MARINARA</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=Courier+Prime:ital@0;1&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===================== HERO ===================== -->
+  <section id="hero">
+
+    <!-- LEFT: vertical MARINARA -->
+    <div class="marinara-col">
+      <div class="marinara-vertical">
+
+        <span class="m-letter" data-letter="M">M</span>
+        <!-- First A — the gateway -->
+        <span class="m-letter m-letter--gateway" id="gateway-a" onclick="openApparel()">
+          <span class="letter-char">A</span>
+          <span class="letter-hint">APPAREL</span>
+        </span>
+        <span class="m-letter" data-letter="R">R</span>
+        <span class="m-letter" data-letter="I">I</span>
+        <span class="m-letter" data-letter="N">N</span>
+        <span class="m-letter" data-letter="A">A</span>
+        <span class="m-letter" data-letter="R">R</span>
+        <span class="m-letter" data-letter="A">A</span>
+
+      </div>
+    </div>
+
+    <!-- RIGHT: BANG -->
+    <div class="bang-col">
+      <div class="bang-word">BANG</div>
+      <p class="hero-season">SS 01 — 2025</p>
+    </div>
+
+  </section>
+
+  <!-- ===================== APPAREL SECTION ===================== -->
+  <section id="apparel-section" class="hidden">
+
+    <!-- AUTH MODAL -->
+    <div id="auth-modal" class="modal hidden">
+      <div class="modal-backdrop" onclick="closeModal('auth-modal')"></div>
+      <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('auth-modal')">✕</button>
+        <div id="auth-tabs">
+          <button class="tab-btn active" onclick="switchTab('login')">LOGIN</button>
+          <button class="tab-btn" onclick="switchTab('register')">REGISTER</button>
+        </div>
+        <div id="login-form">
+          <h2>SIGN IN</h2>
+          <input type="email" id="login-email" placeholder="email" />
+          <input type="password" id="login-password" placeholder="password" />
+          <button class="submit-btn" onclick="login()">ENTER</button>
+          <div id="login-error" class="form-error"></div>
+        </div>
+        <div id="register-form" class="hidden">
+          <h2>CREATE ACCOUNT</h2>
+          <input type="text" id="reg-name" placeholder="full name" />
+          <input type="email" id="reg-email" placeholder="email" />
+          <input type="password" id="reg-password" placeholder="password (min 6 chars)" />
+          <button class="submit-btn" onclick="register()">JOIN</button>
+          <div id="register-error" class="form-error"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CART MODAL -->
+    <div id="cart-modal" class="modal hidden">
+      <div class="modal-backdrop" onclick="closeModal('cart-modal')"></div>
+      <div class="modal-box cart-box">
+        <button class="modal-close" onclick="closeModal('cart-modal')">✕</button>
+        <h2>CART</h2>
+        <div id="cart-items"></div>
+        <div id="cart-total"></div>
+        <button class="submit-btn" onclick="checkout()">CHECKOUT</button>
+        <div id="cart-msg"></div>
+      </div>
+    </div>
+
+    <!-- PRODUCT MODAL -->
+    <div id="product-modal" class="modal hidden">
+      <div class="modal-backdrop" onclick="closeModal('product-modal')"></div>
+      <div class="modal-box product-box">
+        <button class="modal-close" onclick="closeModal('product-modal')">✕</button>
+        <div id="product-detail"></div>
+      </div>
+    </div>
+
+    <!-- APPAREL NAV -->
+    <header class="apparel-nav">
+      <button class="back-btn" onclick="closeApparel()">← BANG MARINARA</button>
+      <div class="apparel-nav-right">
+        <div class="filter-row">
+          <button class="filter-btn active" onclick="filterProducts('all', this)">ALL</button>
+          <button class="filter-btn" onclick="filterProducts('tops', this)">TOPS</button>
+          <button class="filter-btn" onclick="filterProducts('bottoms', this)">BOTTOMS</button>
+          <button class="filter-btn" onclick="filterProducts('outerwear', this)">OUTERWEAR</button>
+          <button class="filter-btn" onclick="filterProducts('accessories', this)">ACCESSORIES</button>
+        </div>
+        <div class="nav-actions">
+          <span id="auth-link" onclick="openModal('auth-modal')">SIGN IN</span>
+          <span id="user-name-display"></span>
+          <span id="logout-btn" class="hidden" onclick="logout()">LOG OUT</span>
+          <span class="cart-icon" onclick="openCart()">BAG (<span id="cart-count">0</span>)</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ABOUT STRIP -->
+    <div class="about-strip">
+      <span>BANG MARINARA — Clothes made on purpose. Small runs. Real fabric. No filler.</span>
+      <span class="about-strip-note">Free shipping over $150 · Returns within 30 days</span>
+    </div>
+
+    <!-- PRODUCTS -->
+    <div id="products-grid" class="products-grid"></div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <span class="footer-logo">BANG MARINARA</span>
+      <span>© 2025</span>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">Newsletter</a>
+        <a href="#">Stockists</a>
+      </div>
+    </footer>
+
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>

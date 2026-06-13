@@ -1,10 +1,7 @@
 /* ============================
-   BANG MARINARA — frontend app.js
+   BANG MARINARA — app.js v2
    ============================ */
 
-const API = '';  // same-origin
-
-// ---- PRODUCT CATALOG ----
 const PRODUCTS = [
   {
     id: 1,
@@ -14,7 +11,7 @@ const PRODUCTS = [
     emoji: '🖤',
     bg: '#1a1a1a',
     color: '#c8ff00',
-    desc: 'Oversized wool-blend coat with raw-hem finishes. Dropped shoulders, minimal internal structure. Available in Charcoal.',
+    desc: 'Oversized wool-blend coat with raw-hem finishes. Dropped shoulders, minimal internal structure. Charcoal.',
     sizes: ['XS','S','M','L','XL'],
   },
   {
@@ -69,7 +66,7 @@ const PRODUCTS = [
     emoji: '⬡',
     bg: '#e8dfc8',
     color: '#0a0a0a',
-    desc: 'Waxed canvas tote. Interior zip pocket. 16" handles. Fits a laptop. Gets better looking the more it is used.',
+    desc: 'Waxed canvas tote. Interior zip pocket. 16" handles. Fits a laptop. Gets better the more it is used.',
     sizes: ['ONE SIZE'],
   },
   {
@@ -91,7 +88,7 @@ const PRODUCTS = [
     emoji: '✦',
     bg: '#2c2c2c',
     color: '#c8ff00',
-    desc: 'Six-pocket cargo cut in a dense cotton twill. Straight leg, sits at natural waist. Black or Tan.',
+    desc: 'Six-pocket cargo cut in dense cotton twill. Straight leg, sits at natural waist. Black or Tan.',
     sizes: ['XS','S','M','L','XL'],
   },
   {
@@ -107,8 +104,8 @@ const PRODUCTS = [
   },
 ];
 
-let cart = JSON.parse(localStorage.getItem('vm_cart') || '[]');
-let currentUser = JSON.parse(localStorage.getItem('vm_user') || 'null');
+let cart = JSON.parse(localStorage.getItem('bm_cart') || '[]');
+let currentUser = JSON.parse(localStorage.getItem('bm_user') || 'null');
 let selectedSize = null;
 let currentProduct = null;
 
@@ -118,6 +115,31 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCartCount();
   updateAuthUI();
 });
+
+// ---- HERO ↔ APPAREL TOGGLE ----
+function openApparel() {
+  const hero = document.getElementById('hero');
+  const apparel = document.getElementById('apparel-section');
+
+  hero.classList.add('exiting');
+  setTimeout(() => {
+    hero.style.display = 'none';
+    apparel.classList.remove('hidden');
+    apparel.classList.add('entering');
+    window.scrollTo(0, 0);
+  }, 420);
+}
+
+function closeApparel() {
+  const hero = document.getElementById('hero');
+  const apparel = document.getElementById('apparel-section');
+
+  apparel.classList.add('hidden');
+  apparel.classList.remove('entering');
+  hero.style.display = '';
+  hero.classList.remove('exiting');
+  window.scrollTo(0, 0);
+}
 
 // ---- RENDER PRODUCTS ----
 function renderProducts(list) {
@@ -173,17 +195,15 @@ function selectSize(size, btn) {
 }
 
 function addToCart() {
-  const p = currentProduct;
   if (!selectedSize) {
     document.getElementById('pd-msg').textContent = 'Please select a size.';
     return;
   }
-  cart.push({ id: p.id, name: p.name, price: p.price, size: selectedSize, emoji: p.emoji, bg: p.bg, color: p.color });
+  const p = currentProduct;
+  cart.push({ id: p.id, name: p.name, price: p.price, size: selectedSize });
   saveCart();
   updateCartCount();
   closeModal('product-modal');
-
-  // Save to server if logged in
   if (currentUser) saveCartToServer();
 }
 
@@ -212,7 +232,6 @@ function openCart() {
     const sum = cart.reduce((a, c) => a + c.price, 0);
     total.innerHTML = `<strong>TOTAL</strong> — $${sum}`;
   }
-
   openModal('cart-modal');
 }
 
@@ -225,7 +244,7 @@ function removeFromCart(i) {
 }
 
 function saveCart() {
-  localStorage.setItem('vm_cart', JSON.stringify(cart));
+  localStorage.setItem('bm_cart', JSON.stringify(cart));
 }
 
 function updateCartCount() {
@@ -241,7 +260,6 @@ async function checkout() {
     document.getElementById('cart-msg').textContent = 'Your bag is empty.';
     return;
   }
-
   try {
     const res = await fetch('/api/orders', {
       method: 'POST',
@@ -253,7 +271,7 @@ async function checkout() {
       cart = [];
       saveCart();
       updateCartCount();
-      document.getElementById('cart-msg').textContent = '✓ Order placed! Thank you.';
+      document.getElementById('cart-msg').textContent = '✓ Order placed. Thank you.';
       document.getElementById('cart-msg').style.color = '#2a7a2a';
       document.getElementById('cart-items').innerHTML = '';
       document.getElementById('cart-total').innerHTML = '';
@@ -261,7 +279,7 @@ async function checkout() {
       document.getElementById('cart-msg').textContent = data.error || 'Checkout failed.';
     }
   } catch {
-    document.getElementById('cart-msg').textContent = 'Network error. Please try again.';
+    document.getElementById('cart-msg').textContent = 'Network error. Try again.';
   }
 }
 
@@ -294,12 +312,7 @@ async function login() {
   const email = document.getElementById('login-email').value.trim();
   const password = document.getElementById('login-password').value;
   document.getElementById('login-error').textContent = '';
-
-  if (!email || !password) {
-    document.getElementById('login-error').textContent = 'Please fill all fields.';
-    return;
-  }
-
+  if (!email || !password) { document.getElementById('login-error').textContent = 'Fill all fields.'; return; }
   try {
     const res = await fetch('/api/auth/login', {
       method: 'POST',
@@ -309,15 +322,13 @@ async function login() {
     const data = await res.json();
     if (data.success) {
       currentUser = data.user;
-      localStorage.setItem('vm_user', JSON.stringify(currentUser));
+      localStorage.setItem('bm_user', JSON.stringify(currentUser));
       closeModal('auth-modal');
       updateAuthUI();
     } else {
       document.getElementById('login-error').textContent = data.error || 'Login failed.';
     }
-  } catch {
-    document.getElementById('login-error').textContent = 'Network error.';
-  }
+  } catch { document.getElementById('login-error').textContent = 'Network error.'; }
 }
 
 async function register() {
@@ -325,16 +336,8 @@ async function register() {
   const email = document.getElementById('reg-email').value.trim();
   const password = document.getElementById('reg-password').value;
   document.getElementById('register-error').textContent = '';
-
-  if (!name || !email || !password) {
-    document.getElementById('register-error').textContent = 'Please fill all fields.';
-    return;
-  }
-  if (password.length < 6) {
-    document.getElementById('register-error').textContent = 'Password must be at least 6 characters.';
-    return;
-  }
-
+  if (!name || !email || !password) { document.getElementById('register-error').textContent = 'Fill all fields.'; return; }
+  if (password.length < 6) { document.getElementById('register-error').textContent = 'Password min 6 chars.'; return; }
   try {
     const res = await fetch('/api/auth/register', {
       method: 'POST',
@@ -344,20 +347,18 @@ async function register() {
     const data = await res.json();
     if (data.success) {
       currentUser = data.user;
-      localStorage.setItem('vm_user', JSON.stringify(currentUser));
+      localStorage.setItem('bm_user', JSON.stringify(currentUser));
       closeModal('auth-modal');
       updateAuthUI();
     } else {
       document.getElementById('register-error').textContent = data.error || 'Registration failed.';
     }
-  } catch {
-    document.getElementById('register-error').textContent = 'Network error.';
-  }
+  } catch { document.getElementById('register-error').textContent = 'Network error.'; }
 }
 
 function logout() {
   currentUser = null;
-  localStorage.removeItem('vm_user');
+  localStorage.removeItem('bm_user');
   updateAuthUI();
 }
 
@@ -372,7 +373,7 @@ async function saveCartToServer() {
   } catch {}
 }
 
-// ---- MODAL UTILS ----
+// ---- MODALS ----
 function openModal(id) {
   document.getElementById(id).classList.remove('hidden');
   document.body.style.overflow = 'hidden';
